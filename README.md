@@ -6,8 +6,8 @@ and GitHub. It is intended to be done in couples where one of you performs
 as __Alice__, the owner of a repository and the other as __Bob__, a
 collaborator.
 
-Through the exercise, Alice and Bob will evolve a basic version of the
-[Mars Rover Kata](http://craftsmanship.sv.cmu.edu/katas/mars-rover-kata)
+Through the exercise, Alice and Bob will evolve a basic JavaScript version
+of the [Mars Rover Kata](http://craftsmanship.sv.cmu.edu/katas/mars-rover-kata)
 to a more sophisticated implementation.
 
 Prerequisites
