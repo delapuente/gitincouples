@@ -65,3 +65,9 @@ Push your changes to the server
 $ git push origin master
 ```
 
+_Ask Bob for collaboration..._
+
+3. Publish your initial code
+----------------------------
+
+
