@@ -26,8 +26,10 @@ How to follow the exercise
 --------------------------
 
 Once in couples, one of you assumes the role of Alice and the other one is Bob.
-Alice should follow the text in `alice.md` while Bob should follow the text in
-`bob.md`.
+Alice should follow the text in
+[`alice.md`](https://github.com/lodr/gitincouples/blob/master/alice.md)
+while Bob should follow the text in
+[`bob.md`](https://github.com/lodr/gitincouples/blob/master/bob.md).
 
 Alice and Bob have fake GitHub accounts:
  * https://github.com/alice
