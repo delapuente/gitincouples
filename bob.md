@@ -40,10 +40,20 @@ Enter the new folder named after the repository:
 $ cd marsroverkata
 ```
 
-And add a reference to your GitHub remote repository:
+As we cloned from a repository, an automatically added remote called `origin` is already
+set. To see it:
 
 ```bash
-$ git remote add origin https://bob@github.com/bob/marsroverkata.git
+$ git remote -v
+```
+
+Remember the `-v` or git won't show the URLs.
+
+To prevent git for asking our user again and again it is better to include the username
+in the remote URL. So set the remote url by typing:
+
+```bash
+$ git remote set-url origin https://bob@github.com/bob/marsroverkata.git
 ```
 
 As you're contributing to another's project, let's add another remote for it.
@@ -56,3 +66,31 @@ $ git remote add upstream https://bob@github.com/alice/marsroverkata.git
 
 _Wait for Alice to update her repository..._
 
+3. Update your local repository
+-------------------------------
+
+Alice is requesting your help for improving her code. You first need to get that code. You
+set a remote for Alice's repository named `upstream`. Use it to pull the changes into your
+local repository.
+
+```bash
+$ git pull upstream master
+```
+
+You will see a brief of the changes and you can see the differences between your current
+updated version and the former one by showing asking for a _diff_ with `ORIG_HEAD`.
+
+```bash
+$ git diff --name-status ORIG_HEAD
+```
+
+The `A` in the report stands for **Added**. If you want see all the differences, type:
+
+```bash
+$ git diff ORIG_HEAD
+```
+
+4. Spliting source code
+-----------------------
+
+First thing you notice when
