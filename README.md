@@ -38,10 +38,13 @@ Alice and Bob have fake GitHub accounts:
 You must replace `alice` or `bob` with your username accordingly to the role
 you're performing.
 
-From time to time, the text reads `Wait Alice...` or `Wait Bob...`. Obviously
+From time to time, the text reads _Wait Alice..._ or _Tell Bob..._. Obviously
 interactions with Git and GitHub are not synchronous at all and that is the
 interesting part of a SCM, of course, but for the sake of better learning, we
 will keep this way.
+
+Once finished, delete both repositories from Alice and Bob and the local ones
+and start over switching your roles.
 
 The workflow
 ------------
