@@ -133,6 +133,8 @@ operation but now, simply click on _Confirm merge_ to finish.
 
 Now the changes are in the `master` branch.
 
+_Tell Bob you merged his changes and continue reading!_
+
 
 5. Update your local repository
 -------------------------------
@@ -235,3 +237,7 @@ And publish the code into a new branch:
 ```bash
 $ git push origin moving-sources
 ```
+
+_Some real collaboration time: ask Bob for teach you how to make a pull request!_
+
+_After, teach Bob how to review and accept the pull request_
