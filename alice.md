@@ -117,3 +117,121 @@ $ git push origin master
 _Ask Bob for the first improvement..._
 
 
+4. Review the code
+------------------
+
+So  Bob is asking you for reviewing a pull request. Perfect, navigate to:
+https://github.com/alice/marsroverkata/pulls to see the list of open PR. Click on the first (and solely)
+one and start reviewing the code!
+
+See some tips at https://github.com/lodr/marsroverkata-alice/pulls
+
+Trust me now when I say you there is nothing bad with this code if Bob followed the exercise ;)
+
+So just click on _Merge pull request_. You will be given the chance of adding a comment and cancel the
+operation but now, simply click on _Confirm merge_ to finish.
+
+Now the changes are in the `master` branch.
+
+
+5. Update your local repository
+-------------------------------
+
+In your local repository, ensure you're in the `master` branch with `git status`. Then update the
+local repository with:
+
+```bash
+$ git pull origin master
+```
+
+You can see a summary of the changes with:
+
+```bash
+$ git diff --name-status ORIG_HEAD
+```
+
+You will see files added (`A`), deleted (`D`) and modified (`M`).
+
+Time for another modification.
+
+6. Move to directories
+----------------------
+
+Despite you closed the PR, you realize it could be a better organization to move the source code
+to another place, say a `js` folder. Create it now. Notice that moving and object is like deleting
+from its current location and adding a new one in the new path. To avoid these deletions / additions,
+git has its own move command:
+
+```bash
+$ git mv *.js js/
+```
+
+This way you are moving all your JavaScript files to their new location. Check the status of the working
+tree with:
+
+```bash
+$ git status
+```
+
+Pay attention to the current branc: it's `master`!! You should never modify master directly!
+
+Instead, use a branch, ask for review and merge if all looks well.
+
+But worry not, your `master` branch is tracked by git so it is very hard to loose something. Just pay
+attention to the git status messages and you'll realize you can undo all your changes.
+
+Moreover, you can simply pick and move your changes to a new branch by typing:
+
+```bash
+$ git checkout -b moving-sources
+```
+
+To _check out_ is to change from one branch to another. When specifying `-b` option, you are saying
+the following branch will be a new one.
+
+If you want a list of all branches, use:
+
+```bash
+$ git branch -a
+```
+
+Without `-a` it only shows the local branches.
+
+Now your changes are in the new branch. Well, all is ok. If you use `git status` you will see three
+renames, git treats a movement as a rename. There is nothing special here, it is the Linux way!
+
+Before finishing, use a source editor to fix the paths for your JS scripts in the `index.html` file.
+The final content of the file should be:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mars Rover Kata</title>
+    <script src="js/grid.js" type="text/javascript"></script>
+    <script src="js/rover.js" type="text/javascript"></script>
+    <script src="js/tests.js" type="text/javascript"></script>
+  </head>
+  <body>
+  </body>
+</html>
+```
+
+Check with `git status` for the current state of your changes and stage the modified `index.html`.
+
+```bash
+$ git add index.html
+```
+
+Finally, commit the changes:
+
+```bash
+$ git commit -m'Sources moved to a better emplacement'
+```
+
+And publish the code into a new branch:
+
+```bash
+$ git push origin moving-sources
+```
