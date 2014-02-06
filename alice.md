@@ -114,6 +114,6 @@ Finally, push your changes to the remote repository.
 $ git push origin master
 ```
 
-_Ask Bob for collaboration_
+_Ask Bob for the first improvement..._
 
 
