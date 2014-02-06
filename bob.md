@@ -210,3 +210,62 @@ if you want. Finally, send the PR by clicking on _Send pull request_. Once sent,
 opportunity of setting the asignee for this PR at the right of the code.
 
 _Choose Alice and ask her for the review!_
+
+7. Update your `master` branch
+------------------------------
+
+Now Alice has accepted your changes, go to your local repository ensure in which branch you're by
+showing local branches:
+
+```bash
+$ git branch
+```
+
+The current branch is marked with an asterisc (`*`). Change to the `master` branch:
+
+```bash
+$ git checkout master
+```
+
+With `checkout` you can switch from branch to branch. Before, when creating the branch for splitting
+the source, you provided the `-b` option to say git you were switching to a **new branch**.
+
+When switching to `master` you will read:
+
+```
+Your branch is ahead of 'origin/master' by 1 commit.
+```
+
+This is because you are a contributo of the `upstream` repository and you are using your own remote
+repository to hold feature branches only. Nothing is keeping your master synchronized with the official
+repository. This taks depends on you.
+
+Let's synchronize but before, update your master with the latest changes. You should never start a feature
+without updating your master branch before.
+
+```bash
+$ git pull upstream master
+```
+
+I remind you can see a summary of differences with:
+
+```bash
+$ git diff --name-status ORIG_HEAD
+```
+
+Now push all the changes to your remote repository.
+
+```bash
+$ git push origin master
+```
+
+Notice you are working with `upstream` and `origin`.
+
+The first one is the _official_ repository where you're contirbuting. You never push to `upstream`,
+only use it to get the latest `master` updates.
+
+The second one is the _remote_ repository you own and use to develop new features. Push to origin
+whenever you want.
+
+_Now wait Alice for asking how to make a pull request. You will be the reviewer and Alice will teach
+you how to review the code and merge._ 
