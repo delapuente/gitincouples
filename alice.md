@@ -26,6 +26,8 @@ minutes.
 Create a folder on your system and open a terminal inside this location. Name
 the folder as your repository (not mandatory but convenient), i.e. `marsroverkata`.
 
+We will call this folder _the working tree_.
+
 Add a `README.md` file and put this content inside:
 
 ```
@@ -69,5 +71,49 @@ _Ask Bob for collaboration..._
 
 3. Publish your initial code
 ----------------------------
+
+[Download your initial code](https://github.com/lodr/gitincouples/raw/master/kata/initialkata.zip)
+in a zip and decompress the contents into your working tree. Now check the git status by typing:
+
+```bash
+$ git status
+```
+
+You will see the new added files under `Untracked files:`
+
+You can each one individually or all using a pattern. This is the most general pattern and will add
+all the files not yet tracked.
+
+```bash
+$ git add .
+```
+
+Check what is the state of your files now your have added them:
+
+```bash
+$ git status
+```
+
+You will see they are under `Changes to be commited:`. Between parenthesis, git tells you how
+to restore them to its former state: `unstage`.
+
+The `stage` state is the entrance hall for a file before it is commited and stored by your local
+repository. Now you have your files in this state, let's commit them:
+
+```bash
+$ git commit -m'My initial code'
+```
+
+The message for the commit is mandatory. If not provided, git will open your system's text editor.
+If you left the message empty, the commit is aborted. Providing `-m` we can write the message along
+the command.
+
+Finally, push your changes to the remote repository.
+
+```bash
+$ git push origin master
+```
+
+_Ask Bob for collaboration_
 
 
