@@ -93,4 +93,179 @@ $ git diff ORIG_HEAD
 4. Spliting source code
 -----------------------
 
-First thing you notice when
+First thing you notice when looking at Alice code is that all the source code is in the same
+place so you decide to split the source into three files:
+
+ * `grid.js` with the Grid object.
+ * `rover.js` with the Rover object.
+ * `test.js` with the Test code.
+
+To do this, you're going to create a dedicated branch for this end:
+
+```bash
+$ git checkout -b split-sources
+```
+
+Double-check you are in the new branch by typing:
+
+```bash
+$ git status
+```
+
+Now you can create the three files and redistribute the code. If you're not sure about what to do,
+decompress the [already split sources](https://github.com/lodr/gitincouples/raw/master/kata/splitsource.zip)
+into your working tree and replace when asked. 
+
+If splitting manually, don't forget to adjust the HTML by replacing the reference to `kata.js` script
+by the three new files. The `test.js` script **must be the last**.
+
+5. Commiting your changes
+-------------------------
+
+Now you've (almost) finished with the split, you want to ask Alice for reviewing your code and merge into
+master if she agrees with the the modifications. Take a break: step by step!
+
+First you need to stage your changes. The `stage` state is the hall before commit. When files are
+staged they are added to the index but nothing more. Your changes won't be effective until you 
+commit them. To check the current state of your working tree, type:
+
+```bash
+$ git status
+```
+
+You will see there are new untracked files and the `index.html` has been altered. Pay attention to
+git explanations saying how to revert the changes you made to the files. Start by adding the new files
+with:
+
+```bash
+$ git add "*.js"
+```
+
+With that `*.js` pattern you're saying you want add all the files ending in `.js`. Check the status:
+
+```bash
+$ git status
+```
+
+Now you see the new files are staged, under `Changes to be committed:` but the index remains unstaged.
+
+Add it by typing:
+
+```bash
+$ git add index.html
+```
+
+You can add individual files by providing the complete path instead of a pattern.
+
+Befor committing, notice you don't need the `kata.js` file anymore. You can get rid of the file by
+simply deleting it. After deleting, check the status again:
+
+```bash
+$ git status
+```
+
+You will see another unstaged modification: the deletion! But you can not use `git add` as there is
+nothing to add. You should use:
+
+```bash
+$ git rm kata.js
+```
+
+Check the status now to discover a weird thing: git shows there has been a rename from `kata.js` to
+`rover.js`:
+
+```bash
+renamed:    kata.js -> rover.js
+```
+
+Don't worry, this is becasue most of the code in `kata.js` has ended inside `rover.js` so git thinks
+you're rewritting the file and renaming it.
+
+Now all your code is ready to be commited, do it:
+
+```bash
+$ git commit -m'Source is now split in three files'
+```
+
+Finally, publish the changes in your public repository:
+
+```bash
+$ git push origin split-sources
+```
+
+See? The first parameter after `push` is your repository and the second one is the branch name
+**for your remote repository**. You always pushes the branch where you currently are. Normally
+local and remote names coincide.
+
+See your branch online navigating to: https://github.com/bob/marsroverkata/tree/split-sources
+
+6. Asking for review
+--------------------
+
+In the online branch view, you'll see a green button just before the branch switcher. Click on it
+to start filinf a pull request.
+
+Click on _Create pull request_ and use the next screen to add a description or review your changes
+if you want. Finally, send the PR by clicking on _Send pull request_. Once sent, you have the 
+opportunity of setting the asignee for this PR at the right of the code.
+
+_Choose Alice and ask her for the review!_
+
+7. Update your `master` branch
+------------------------------
+
+Now Alice has accepted your changes, go to your local repository ensure in which branch you're by
+showing local branches:
+
+```bash
+$ git branch
+```
+
+The current branch is marked with an asterisc (`*`). Change to the `master` branch:
+
+```bash
+$ git checkout master
+```
+
+With `checkout` you can switch from branch to branch. Before, when creating the branch for splitting
+the source, you provided the `-b` option to say git you were switching to a **new branch**.
+
+When switching to `master` you will read:
+
+```
+Your branch is ahead of 'origin/master' by 1 commit.
+```
+
+This is because you are a contributo of the `upstream` repository and you are using your own remote
+repository to hold feature branches only. Nothing is keeping your master synchronized with the official
+repository. This taks depends on you.
+
+Let's synchronize but before, update your master with the latest changes. You should never start a feature
+without updating your master branch before.
+
+```bash
+$ git pull upstream master
+```
+
+I remind you can see a summary of differences with:
+
+```bash
+$ git diff --name-status ORIG_HEAD
+```
+
+Now push all the changes to your remote repository.
+
+```bash
+$ git push origin master
+```
+
+Notice you are working with `upstream` and `origin`.
+
+The first one is the _official_ repository where you're contirbuting. You never push to `upstream`,
+only use it to get the latest `master` updates.
+
+The second one is the _remote_ repository you own and use to develop new features. Push to origin
+whenever you want.
+
+_Now wait Alice for asking how to make a pull request. You will be the reviewer and Alice will teach
+you how to review the code and merge._ 
