@@ -124,7 +124,7 @@ So  Bob is asking you for reviewing a pull request. Perfect, navigate to:
 https://github.com/alice/marsroverkata/pulls to see the list of open PR. Click on the first (and solely)
 one and start reviewing the code!
 
-See some tips at https://github.com/lodr/marsroverkata-alice/pulls
+See some tips at https://help.github.com/articles/using-pull-requests#reviewing-the-pull-request
 
 Trust me now when I say you there is nothing bad with this code if Bob followed the exercise ;)
 
