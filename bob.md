@@ -267,5 +267,84 @@ only use it to get the latest `master` updates.
 The second one is the _remote_ repository you own and use to develop new features. Push to origin
 whenever you want.
 
-_Now wait Alice for asking how to make a pull request. You will be the reviewer and Alice will teach
-you how to review the code and merge._ 
+_Now wait Alice for asking you how to teach he about making a pull request. You will be her reviewer
+and Alice will teach you how to review the code and merge. Remember you are mergin to Alice's repository
+so you need to navigato to https://github.com/alice/marsroverkata/pulls in order to see the pending
+pull requests. Once merged, continue reading._
+
+8. Update your `master` branch (again)
+--------------------------------------
+
+And get used to it because this is the regular cycle:
+ 
+ 1. Pull from `upstream`
+ 2. Brach for a new feature
+ 3. Push ot `origin`
+ 4. Continue developing until the feature is ready
+ 5. Make a PR and ask for review
+ 6. Address the issues if any; if not, go to 8
+ 7. Update the PR and go to 5
+ 8. Get your PR merged
+ 9. Go to 1
+
+So, switch to the `master` branch:
+
+```bash
+$ git checkout master
+```
+
+And update:
+
+```bash
+$ git pull upstream master
+```
+
+9. Avoiding repetition when turning
+-----------------------------------
+
+Now you realize that `rover.js` contains a lot of repetition and you want to propose some changes
+to Alice. So you will make a new branch called `avoiding-repetition`. Come on! Go on...
+
+```bash
+$ git checkout -b avoiding-repetition
+```
+
+See at the contents of `rover.js`, members `turnRight` and `turnLeft` can be refactored to a better
+approach. Replace both by:
+
+```javascript
+  turnRight: function () {
+    this.turn('right');
+  },
+  turnLeft: function () {
+    this.turn('left')
+  },
+  turn: function (direction) {
+    var currentIndex = this.orientations.indexOf(this.orientation);
+    var newIndex = currentIndex + (direction === 'right' ? 1 : -1);
+    if (newIndex < 0) {
+      newIndex = this.orientations.length + newIndex;
+    }
+    this.orientation = this.orientations[newIndex];
+  },
+  orientations: 'nesw'
+```
+
+And, of course, check the tests continue passing!
+
+So now stage and commit your changes:
+
+```bash
+$ git add js/rover.js
+$ git commit -m'Avodiing some repetition'
+```
+
+Mmmm, may your comment is too short. You could provide a better explanation about what are you doing.
+To fix a commit comment, type:
+
+```bash
+$ git --amend -m'Avoiding some repetition by refactoring turnRight and turnLeft'
+```
+
+The key is the `--amend` parameter. It allows you to change the commit message. Please, **never** amend
+an already published commit. **Published history is sacred!**
