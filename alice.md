@@ -120,7 +120,9 @@ _Ask Bob for the first improvement..._
 4. Review the code
 ------------------
 
-So  Bob is asking you for reviewing a pull request. Perfect, navigate to:
+So Bob is asking you for reviewing a pull request. A pull request is a mechanism offered by GitHub
+that allows a developer to review code from collaborators online, make comments and finally merge
+into the target branch without using git. So navigate to:
 https://github.com/alice/marsroverkata/pulls to see the list of open PR. Click on the first (and solely)
 one and start reviewing the code!
 
@@ -238,6 +240,83 @@ And publish the code into a new branch:
 $ git push origin moving-sources
 ```
 
-_Some real collaboration time: ask Bob for teach you how to make a pull request!_
+Now you need to make a PR to yourself. It can sound strange but it is quite convenient that
+another programmer rather than you review your code before merging. You can make a PR from
+one of your branches (`moving-sources`) to another (`master`) but you can not assign this 
+PR to Bob unless he is an official repository collaborator so grant permissions to him by
+[adding a collaborator](https://help.github.com/articles/how-do-i-add-a-collaborator).
 
-_After, teach Bob how to review and accept the pull request_
+_Now ask Bob for teach you about making a pull request and then you will teach him about the review
+process. Once merged, continue reading._
+
+7. Avoiding repetition when moving
+----------------------------------
+
+_Please, ignore Bob for reviewing code until you end this part._
+
+Admit, you never liked how your `moveForward()` and `moveBackward()` functions look. Let's do some refactor.
+
+Start by updating you master branch. Then swictch to a new one.
+
+```bash
+$ git checkout master
+$ git pull origin master
+$ git checkout -b avoiding-repetition
+```
+
+Maybe your branch name is not very accurate. Let's rename the branch to somethig more specific:
+
+```bash
+$ git branch -m refactoring-moving-forward-and-backward
+```
+
+You can consider `-m` as _moving_. 
+
+Open `rover.js` and replace `moveForward` and `moveBackward` by the following code:
+
+```javascript
+  moveForward: function () {
+    this.advance('forward');
+  },
+  moveBackward: function () {
+    this.advance('backward');
+  },
+  advance: function (direction) {
+    direction = (direction === 'forward') ? 1 : -1;
+    var formerPosition = [
+      this.position[0],
+      this.position[1]
+    ];
+    var increment = this.increments[this.orientation];
+    this.position = [
+      (this.position[0] + increment[0] * direction) % Grid.sizeX,
+      (this.position[1] + increment[1] * direction) % Grid.sizeY
+    ];
+    if (this.position[0] < 0) {
+      this.position[0] = Grid.sizeX + this.position[0];
+    }
+    if (this.position[1] < 0) {
+      this.position[1] = Grid.sizeY + this.position[1];
+    }
+    if (Grid.thereIsObstacle(this.position[0], this.position[1])) {
+      this.position = formerPosition;
+    }
+  },
+  increments: {
+    n: [0, 1],
+    e: [1, 0],
+    s: [0, -1],
+    w: [-1, 0]
+  },
+```
+
+Now, prepare a PR. Remember yoou must stage, commit and publish your changes before asking for
+review!
+
+```bash
+$ git add js/rover.js
+$ git commit -m'Refactoring moveForward and mmoveBackward'
+$ git push origin refactoring-moving-forward-and-backward
+```
+
+_Ask for Bob review._
