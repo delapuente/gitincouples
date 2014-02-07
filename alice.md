@@ -385,7 +385,7 @@ Now you need to fetch the branches in Bob:
 $ git remote update bob
 ```
 
-Now you need to create a branch tracking `avoiding-repetition`in bob origin. You create a branch typing:
+Now you need to create a branch tracking `avoiding-repetition`in `bob` remote. You create a branch typing:
 
 ```bash
 $ git branch --track avoiding-repetition bob/avoiding-repetition
