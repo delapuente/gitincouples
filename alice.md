@@ -319,4 +319,56 @@ $ git commit -m'Refactoring moveForward and mmoveBackward'
 $ git push origin refactoring-moving-forward-and-backward
 ```
 
-_Ask for Bob review._
+_Ask for Bob review. He has some comments for you._
+
+8. Pushing changes to already published branches
+------------------------------------------------
+
+Publish new changes to an already published branch is not a mistery. Review the comments in the PR to
+see how Bob has detected a lot of accesses to `this.position[x]`. Let's reduce theses accesses. Ensure
+you are in your refactor branch:
+
+```bash
+$ git checkout refactoring-moving-forward-and-backward
+```
+
+Now open `rover.js` and replace the `advance` member by:
+
+```javascript
+  advance: function (direction) {
+    direction = (direction === 'forward') ? 1 : -1;
+    var X = this.position[0], Y = this.position[1];
+
+    var increment = this.increments[this.orientation];
+    X = (X + increment[0] * direction) % Grid.sizeX;
+    Y = (Y + increment[1] * direction) % Grid.sizeY;
+    if (X < 0) {
+      X += Grid.sizeX;
+    }
+    if (Y < 0) {
+      Y += Grid.sizeY;
+    }
+    if (!Grid.thereIsObstacle(X, Y)) {
+      this.position = [X, Y];
+    }
+  },
+```
+
+And finally publish your changes again. The PR will be automatically because it is linked to your branch.
+
+_Tell Bob you made his modifications and start reviewing his PR but please, don't merge it yet. Wait for
+yours to be merged **first**._
+
+9. Review Bob changes
+---------------------
+
+Review Bob changes. You will notice he was modifying the same file as you. Try to refresh by pressing F5
+and you will notice GitHub keeps saying that the PR can be automatically merged. This is because the merge
+algorithms of git are smart enough to realize you both have changed different parts of the file and know
+how to merge them.
+
+Good news but before merging why not try Bob's code. It is not mandatory, but until now you were relying
+on Bob's word when saying the tests are passing. You are two and probably you're friends but Bob could be
+a complete unknown.
+
+Let's check if tests are actually passing.
