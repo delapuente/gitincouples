@@ -348,3 +348,7 @@ $ git --amend -m'Avoiding some repetition by refactoring turnRight and turnLeft'
 
 The key is the `--amend` parameter. It allows you to change the commit message. Please, **never** amend
 an already published commit. **Published history is sacred!**
+
+So, now, publish your code and prepare a PR.
+
+_Ask Alice to review your code._
