@@ -372,3 +372,35 @@ on Bob's word when saying the tests are passing. You are two and probably you're
 a complete unknown.
 
 Let's check if tests are actually passing.
+
+First you need to add a remote to refer to Bob's remote repository:
+
+```bash
+$ git remote add bob https://alice@github.com/bob/marsroverkata.git
+```
+
+Now you need to fetch the branches in Bob:
+
+```
+$ git remote update bob
+```
+
+Now you need to create a branch tracking `avoiding-repetition`in bob origin. You create a branch typing:
+
+```bash
+$ git branch --track avoiding-repetition bob/avoiding-repetition
+``` 
+
+It is very iportant to notice the first name is the name you give to **your** local branch to test Bob's
+branch. It could be named with any other name such as `testing-bob` but we choosed to keep the same name.
+The second parameter with the `--track` options tells git that the new branch is following Bob's branch so
+you can say if you're out of date with respect to the remote repository and make `git pull` to update.
+
+Now change to that branch and test the code by opening `index.html` and a JS console an checking the three
+results are `true`.
+
+```bash
+$ git checkout avoiding-repetition
+```
+
+Once checked, accept the PR and update your `master` branch!
