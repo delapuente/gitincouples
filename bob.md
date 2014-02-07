@@ -302,6 +302,8 @@ $ git pull upstream master
 9. Avoiding repetition when turning
 -----------------------------------
 
+_Please, ignore Alice until you complete this step._
+
 Now you realize that `rover.js` contains a lot of repetition and you want to propose some changes
 to Alice. So you will make a new branch called `avoiding-repetition`. Come on! Go on...
 
@@ -351,4 +353,30 @@ an already published commit. **Published history is sacred!**
 
 So, now, publish your code and prepare a PR.
 
-_Ask Alice to review your code._
+_Ask Alice to review your code and wait for Alice because Alice will be requesting your review as well.
+Indeed, if you have received her request, Attend it now! Please don't merge her code. You can suggest
+a good improvement._
+
+10. Commenting on a PR
+----------------------
+
+While reviewing the code of Alice you notice two things:
+
+ 1. Both of you had the same idea and you're editing the same file. Don't panic and keep reviewing.
+ 2. The Alice refactor is ok but she is accesing `this.position[0]` and `this.position[1]` repeatedly
+which can harm performance.
+
+So leave a comment in the code asking her for trying to minimize the access.
+
+_Wait for Alice modifications. Once you have it, merge her PR. Then Alice will start to review your
+code, wait for her._
+
+11. Update your `master` branch!
+--------------------------------
+
+You have realized you don't need to change your branch a bit because git has guessed how to merge your
+changes. This does not always happend but it's good when it does!
+
+Please, update your `master` branch again.
+
+
