@@ -369,7 +369,7 @@ which can harm performance.
 So leave a comment in the code asking her for trying to minimize the access.
 
 _Wait for Alice modifications. Once you have it, merge her PR. Then Alice will start to review your
-code, wait for her._
+code, wait for her to finish._
 
 11. Update your `master` branch!
 --------------------------------
@@ -377,6 +377,6 @@ code, wait for her._
 You have realized you don't need to change your branch a bit because git has guessed how to merge your
 changes. This does not always happend but it's good when it does!
 
-Please, update your `master` branch again.
+Please, update your `master` branch again. No clues this time.
 
 
