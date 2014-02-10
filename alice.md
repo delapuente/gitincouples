@@ -391,12 +391,12 @@ Now you need to create a branch tracking `avoiding-repetition`in `bob` remote. Y
 $ git branch --track avoiding-repetition bob/avoiding-repetition
 ``` 
 
-It is very iportant to notice the first name is the name you give to **your** local branch to test Bob's
+It is very important to notice the first name is the name you give to **your** local branch to test Bob's
 branch. It could be named with any other name such as `testing-bob` but we choosed to keep the same name.
 The second parameter with the `--track` options tells git that the new branch is following Bob's branch so
 you can say if you're out of date with respect to the remote repository and make `git pull` to update.
 
-Now change to that branch and test the code by opening `index.html` and a JS console an checking the three
+Now change to that branch and test the code by opening `index.html` and a JS console and checking the three
 results are `true`.
 
 ```bash
@@ -404,3 +404,39 @@ $ git checkout avoiding-repetition
 ```
 
 Once checked, accept the PR and update your `master` branch!
+
+10. A little bit more complicated refactor
+------------------------------------------
+
+_Please, ignore Bob until you complete this step._
+
+Looking at the tests, you noticed your current implementation only allows one rover and one grid so you
+could refactor the modules into classes to generate instances of rovers and grids. Create a new feature
+branch for this named `refactor-into-classes`.
+
+```bash
+$ git checkout -b refactor-into-classes
+```
+
+Now you can download the [refactored sources](https://github.com/lodr/gitincouples/raw/master/kata/classes.zip)
+and decompress into your working tree overwriting the `js` folder.
+
+Don't forget to commit your changes and prepare a PR.
+
+_Ask Bob to review and merge your code. If Bob ask you for reviewing another PR, do it but get your code
+merged first._
+
+11. Review Bob's code
+---------------------
+
+Bobs code is ok. Trust me. If you do'nt believe me, return to step 9 and try his code. The proble is
+you touch the same file and introduced some radical changes so git does not know how to automatically
+merge the code.
+
+_Alice, ask Bob for rebasing his code, please. Wait for him and once rebased, merge the code._
+
+12. Some history
+----------------
+
+So you've finished the exercise. It could be great if you know deletes your local and GitHub repository and
+switch roles with Bob. Don't stop to visit the FAQ and Tricks to find additional help!
