@@ -572,3 +572,4 @@ _Ask Alice for review._
 14. Some clean up
 -----------------
 
+So you've finished the exercise. It could be great if you know deletes your local and GitHub repository and switch roles with Bob. Don't stop to visit the FAQ and Tricks to find additional help!
