@@ -488,15 +488,21 @@ var Rover = {
 During a rebase, `HEAD` is the name of the top of the branch where you're rebasing on. So `HEAD` is `master`
 this time. From the mark:
 
- > <<<<<<< HEAD
+```
+<<<<<<< HEAD
+```
  
 To the mark:
 
- > =======
+```
+=======
+```
  
 Indicates what is in `HEAD` whilst from the same mark to:
 
- > >>>>>>> Avoiding the switch of move() function
+```
+>>>>>>> Avoiding the switch of move() function
+```
 
 Shows what is in your commit (the message is the commit comment so it can be different for you).
 
@@ -543,6 +549,26 @@ Finally, continue the rebase:
 $ git rebase --continue
 ```
 
-Now your code is merged. Update your remote branch to update the PR.
+Now your code is merged and you don't need to commit your changes. All is done. Update your remote branch...
+
+```bash
+$ git push origin move-refactor
+```
+
+And it will fail saying your local repository is behind the remote one. Ok, this is not true. What really
+happen is that the story in the local and remote repository have diverged and, in your local repository,
+there are more commits (those from Alice's changes) git did not expect. So this is the only occasion you
+will be rewriting a remote repository:
+
+```bash
+$ git push -f origin move-refactor
+```
+
+The `-f` option means `force` and it is a very dangerous option when working with collaborators. As you
+are the only contributor to this branch, there is no danger but, please, be careful.
 
 _Ask Alice for review._
+
+14. Some clean up
+-----------------
+
