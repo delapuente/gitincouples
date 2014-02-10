@@ -379,4 +379,170 @@ changes. This does not always happend but it's good when it does!
 
 Please, update your `master` branch again. No clues this time.
 
+12. A little bit complex change
+-------------------------------
 
+_Please, ignore Alice until you complete this step._
+
+The refactor from Alice gave you an idea! And you know how to refactor the `move()` function. Create
+another feature branch called `move-refactor`.
+
+```bash
+$ git checkout -b move-refactor
+```
+
+Now open `rover.js` file and replace the move function by:
+
+```javascript
+  move: function (commands) {
+    var actionName;
+    for (var i = 0; i < commands.length; i++) {
+      var c = commands[i];
+      if (!this.actionNameByCommand.hasOwnProperty(c)) {
+        console.log('Unrecognized command: ' + c);
+      }
+      else {
+        actionName = this.actionNameByCommand[c];
+        this[actionName]();
+      }
+    }
+  },
+  actionNameByCommand: {
+    f: 'moveForward',
+    b: 'moveBackward',
+    r: 'turnRight',
+    l: 'turnLeft'
+  },
+
+```
+
+Commit your changes and prepare a PR.
+
+_Ask Alice for reviewing and merging but attend Alice first. Make her code to be merged before yours and
+wait for Alice review._
+
+13. Rebasing your changes
+-------------------------
+
+You have noticed Alice is changing the same file as you again and this time changes are not clearly
+located as they are spread along the file. So Alice has asked you to rebase your code.
+
+To rebase your code is to put your commits on the top of `master`. So, first, update your `master` branch.
+
+Now return to your feature branch and type:
+
+```bash
+$ git rebase master
+```
+
+This tell git to try to apply your commits on the top of `master` one by one. But this time git does
+not know how to merge the code. So you should do manually. We call this to solve conflicts.
+Let's go, it is not (very) hard!
+
+Open `rover.js`, at the beginning of the file you'll see something like:
+
+```javascript
+<<<<<<< HEAD
+function Rover(x, y, orientation, map) {
+  this.position = [x, y];
+  this.orientation = orientation;
+  this.map = map;
+}
+=======
+var Rover = {
+  init: function (x, y, orientation) {
+    this.position = [x, y];
+    this.orientation = orientation;
+  },
+  move: function (commands) {
+    var actionName;
+    for (var i = 0; i < commands.length; i++) {
+      var c = commands[i];
+      if (!this.actionNameByCommand.hasOwnProperty(c)) {
+        console.log('Unrecognized command: ' + c);
+      }
+      else {
+        actionName = this.actionNameByCommand[c];
+        this[actionName]();
+      }
+    }
+  },
+  actionNameByCommand: {
+    f: 'moveForward',
+    b: 'moveBackward',
+    r: 'turnRight',
+    l: 'turnLeft'
+  },
+  moveForward: function () {
+    this.advance('forward');
+  },
+  moveBackward: function () {
+    this.advance('backward');
+  },
+  advance: function (direction) {
+    direction = (direction === 'forward') ? 1 : -1;
+    var X = this.position[0], Y = this.position[1];
+>>>>>>> Avoiding the switch of move() function
+```
+
+During a rebase, `HEAD` is the name of the top of the branch where you're rebasing on. So `HEAD` is `master`
+this time. From the mark:
+
+ > <<<<<<< HEAD
+ 
+To the mark:
+
+ > =======
+ 
+Indicates what is in `HEAD` whilst from the same mark to:
+
+ > >>>>>>> Avoiding the switch of move() function
+
+Shows what is in your commit (the message is the commit comment so it can be different for you).
+
+Replace all the code from `<<<<<<< HEAD` to `=======` by:
+
+```javascript
+function Rover(x, y, orientation, map) {
+  this.position = [x, y];
+  this.orientation = orientation;
+  this.map = map;
+}
+
+Rover.prototype.move = function (commands) {
+  var actionName;
+  for (var i = 0; i < commands.length; i++) {
+    var c = commands[i];
+    if (!this.actionNameByCommand.hasOwnProperty(c)) {
+      console.log('Unrecognized command: ' + c);
+    }
+    else {
+      actionName = this.actionNameByCommand[c];
+      this[actionName]();
+    }
+  }
+};
+
+Rover.prototype.actionNameByCommand = {
+  f: 'moveForward',
+  b: 'moveBackward',
+  r: 'turnRight',
+  l: 'turnLeft'
+};
+```
+
+Once you finish, check the tests continue passing. If all is ok, you need to mark the conflict as resolved by adding the file:
+
+```bash
+$ git add js/rover.js
+```
+
+Finally, continue the rebase:
+
+```bash
+$ git rebase --continue
+```
+
+Now your code is merged. Update your remote branch to update the PR.
+
+_Ask Alice for review._
