@@ -528,6 +528,7 @@ _Congratulations, you finished `Git In Couples`!_
 
 ---
 
-So you've finished the exercise. It could be great if you know deletes your local and GitHub repository and
-switch roles with Bob. Don't stop to visit the
+So you've finished the exercise. It could be great if you now delete your local repository (by simply
+removing the folder) and [the remote one in GitHub](https://help.github.com/articles/deleting-a-repository)
+and switch roles with Alice. Don't stop visiting
 [FAQ and Tricks](https://github.com/lodr/gitincouples/edit/master/faq.md) to find additional help!
