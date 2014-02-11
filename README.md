@@ -100,7 +100,7 @@ You can see a list of recent changes, switches from one commit to another, from 
 Simply locate the moment you want to recover and do a checkout there using the HASH or the alias (first
 or second column).
 
-You have more FAQ and tricks in the [FAQ file](https://github.com/lodr/gitincouples/edit/master/faq.md).
+You have more FAQ and tricks in the [FAQ file](https://github.com/lodr/gitincouples/blob/master/faq.md).
 
 The workflow
 ------------
