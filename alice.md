@@ -438,5 +438,95 @@ _Alice, ask Bob for rebasing his code, please. Wait for him and once rebased, me
 12. Some history
 ----------------
 
+Lot of things has happend since you published your code. Did you remember. No? Type:
+
+```bash
+$ git log
+```
+
+You can scroll the log down or up with `j` and `k` and exit with `q`. You can search by typing `/` followed
+with the string you can search, then press `enter` and `n` to go to the next appearance and `shift + n` to 
+go to the previous one.
+
+Pay attention to each log entry:
+
+```
+commit 46d731893ac8d2c2194e1c8b53ac4d52baebd642
+Author: Bob <bob@unoyunodiez.com>
+Date:   Thu Feb 6 20:47:46 2014 +0100
+
+    Source is now split into three files
+```
+
+First line is the commit hash / id. This hash identifies the state of the working tree and its
+contents along the internet. Notice this does not mean you can extract the current contents of
+the repository from the identifier. It only means that anyone with the same id it's guaranteed
+to have the same code.
+
+The second is the author and the third is the date. Then it comes the commit message.
+
+The commit hash is its name. Copy one of them (distinct to the first one) and observe the differences
+between your current code and it:
+
+```bash
+$ git diff 34a651fa625406da790b475668a56cf414e63444
+```
+
+The difference view shows what to do to the specified commit to convert it to the current state.
+
+You can revisit your history by checking out the specified commit. Don't worry, nothing is lost.
+
+```bash
+$ git checkout 34a651fa625406da790b475668a56cf414e63444
+```
+
+When you check out to a commit it is said you're in a detached HEAD. You can start a feature branch
+from here to start development. Pay attention to the message git igves tou you when you check out
+a detached HEAD.
+
+To go back to master, simply check it out.
+
+```bash
+$ git checkout master
+```
+
+You have a **log** of all **ref**erence changes in:
+
+```bash
+$ git reflog
+```
+
+Inside this view you have the same controls as in the log.
+
+This view identify each `HEAD` state being the first one, your current state. Take into account that
+`reflog` only shows HEAD changing commands. I.e: a `git log` command does not change the `HEAD` so
+it is not shown.
+
+```
+c4d382b HEAD@{0}: checkout: moving from 34a651fa625406da790b475668a56cf414e63444 to master
+34a651f HEAD@{1}: checkout: moving from master to 34a651fa625406da790b475668a56cf414e63444
+c4d382b HEAD@{2}: pull origin master: Fast-forward
+d1565a0 HEAD@{3}: checkout: moving from refactor-into-classes to master
+38c3095 HEAD@{4}: commit: Moving to classes
+```
+
+Here first column is the short hash for a commit. The second one is the alias and the third is the
+command description.
+
+If you're interested on the complete hash for a state (`c4d382b` or `HEAD@{4}`), exit the reflog and write:
+ 
+```bash
+$ git rev-parse c4d382b
+```
+
+So if you made a mesh changing from one branch to another, visit the reflog! Please, don't trust in the
+commit alias since, as you change the `HEAD` again, all the alias will be pushed forward one slot and
+`HEAD@{0}` will become `HEAD@{1}`, `HEAD@{1}` become `HEAD@{2}` ... The last command is the new
+`HEAD@{0}`.
+
+_Congratulations, you finished `Git In Couples`!_
+
+---
+
 So you've finished the exercise. It could be great if you know deletes your local and GitHub repository and
 switch roles with Bob. Don't stop to visit the FAQ and Tricks to find additional help!
