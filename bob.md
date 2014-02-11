@@ -506,7 +506,7 @@ Indicates what is in `HEAD` whilst from the same mark to:
 
 Shows what is in your commit (the message is the commit comment so it can be different for you).
 
-Replace all the code from `<<<<<<< HEAD` to `=======` by:
+Notice this is what git have identified as changes. In this case, the new refactored function `move()` is below the `>>>>>>>` mark. Replace all the code from the beginning of the file including Alice's `move()` by:
 
 ```javascript
 function Rover(x, y, orientation, map) {
@@ -572,4 +572,42 @@ _Ask Alice for review._
 14. Some clean up
 -----------------
 
-So you've finished the exercise. It could be great if you know deletes your local and GitHub repository and switch roles with Bob. Don't stop to visit the FAQ and Tricks to find additional help!
+Wow Bob, a lot of things has happened today. Let's do some clean up before finish.
+
+You've contributed to a lot of changes and improve the Alice's code. See all the branches (local and
+remote) with:
+
+```bash
+$ git branch -a
+```
+
+You finished your contributions to all the branches. Remove them by typing:
+
+```bash
+$ git branch -d avoiding-repetition
+```
+
+Do the same for the remaining local branches **except `master`**.
+
+In the future, it is possible to try to delete a branch not merged into master. Then git will try to prevent
+you but the action can be totally legit (a discontinued feature, a restarted feature, a testing branch...)
+so you will have to specify `-D` instead of `-d`.
+
+To [remove your remote branches](https://github.com/blog/1377-create-and-delete-branches) refer to GitHub
+documentation or type:
+
+```bash
+$ git push origin :avoiding-repetition
+```
+
+Pay attention to the colon before the remote's branch name. This is precisely what triggers the deletion.
+
+Do this for all the remote branches.
+
+_Congratulations, you've finished Git In Couples!_
+
+---
+
+So you've finished the exercise. It could be great if you now delete your local repository (by simply
+removing the folder) and [the remote one in GitHub](https://help.github.com/articles/deleting-a-repository)
+and switch roles with Alice. Don't stop to visit the FAQ and Tricks to find additional help!
