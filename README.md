@@ -58,27 +58,30 @@ wrong during the exercise. Don't panic and try to apply some of these solutions:
 $ git stash
 ```
 
-Saves your current modifications on the top of the stash stack.
+This saves your current modifications on the top of the stash stack.
 
 ```bash
 $ git stash apply
 ```
 
-Apply the last changes saved in the stash stack.
+This applies the last changes saved in the stash stack.
 
- * You have messed up your working tree and want to discard all your changes.
+ * You have messed up your working tree **but not commited** and want to discard all your changes.
 
 ```bash
 $ git checkout .
 ```
 
- * You want to undo a commit **not yet published**
+ * You want to undo a commit already published.
+
+The safe answer is you can not but you can revert the changes you made with the last commit.
+Locate the commit hash for what you want to revert and do:
 
 ```bash
-$ git reset --hard HEAD~1
+$ git revert <hash>
 ```
 
- * You want the commits from the remote repository discarding yours
+ * You want the commits from the remote repository discarding yours.
 
 ```bash
 $ git pull <remote> <branch>
@@ -87,14 +90,15 @@ $ git reset --hard <remote>/<branch>
 
 Replace `<remote>` and `<branch>` accordingly.
 
-Remember you always have reflog. With:
+Remember you always have reflog. Type:
 
 ```bash
 $ git reflog
 ```
 
-You can see a list of recent changes, switches from one commit to another, from one branch to another.
-Simply locate the moment you want to recover and do a checkout there. 
+You can see a list of recent changes, switches from one commit to another, from one branch to another...
+Simply locate the moment you want to recover and do a checkout there using the HASH or the alias (first
+or second column).
 
 You have more FAQ and tricks in the [FAQ file](https://github.com/lodr/gitincouples/edit/master/faq.md).
 
