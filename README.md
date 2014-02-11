@@ -46,6 +46,58 @@ will keep this way.
 Once finished, delete both repositories from Alice and Bob and the local ones
 and start over switching your roles.
 
+Recommendations
+---------------
+
+It is possible I made mistakes writing the exercise or you made something worng or simply, something goes
+wrong during the exercise. Don't panic and try to apply some of these solutions:
+
+ * You need to interrupt your work and attend other things in another branch. Use the stash:
+
+```bash
+$ git stash
+```
+
+Saves your current modifications on the top of the stash stack.
+
+```bash
+$ git stash apply
+```
+
+Apply the last changes saved in the stash stack.
+
+ * You have messed up your working tree and want to discard all your changes.
+
+```bash
+$ git checkout .
+```
+
+ * You want to undo a commit **not yet published**
+
+```bash
+$ git reset --hard HEAD~1
+```
+
+ * You want the commits from the remote repository discarding yours
+
+```bash
+$ git pull <remote> <branch>
+$ git reset --hard <remote>/<branch>
+```
+
+Replace `<remote>` and `<branch>` accordingly.
+
+Remember you always have reflog. With:
+
+```bash
+$ git reflog
+```
+
+You can see a list of recent changes, switches from one commit to another, from one branch to another.
+Simply locate the moment you want to recover and do a checkout there. 
+
+You have more FAQ and tricks in the [FAQ file](https://github.com/lodr/gitincouples/edit/master/faq.md).
+
 The workflow
 ------------
 
