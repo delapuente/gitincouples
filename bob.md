@@ -345,7 +345,7 @@ Mmmm, may your comment is too short. You could provide a better explanation abou
 To fix a commit comment, type:
 
 ```bash
-$ git --amend -m'Avoiding some repetition by refactoring turnRight and turnLeft'
+$ git commit --amend -m'Avoiding some reptition by refactoring turnRight and turnLeft'
 ```
 
 The key is the `--amend` parameter. It allows you to change the commit message. Please, **never** amend
