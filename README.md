@@ -125,3 +125,10 @@ FYI, here is the kata formulation:
 
 Example: The rover is on a 100x100 grid at location (0, 0) and facing NORTH.
 The rover is given the commands "ffrff" and should end up at (2, 2)
+
+Adittional resources
+--------------------
+
+Yo have a complete list of [common git commands](http://www.ndpsoftware.com/git-cheatsheet.html). The guide points out the different places of a git repositroy. When you click on an area, commands reading or modifying that area appear as arrows. If you click on a command, an explanation appears below. The direction of the arrow depicts the direction of the change. I.e. `commit -a` goes from _workspace_ to _local repository_ by adding modified files to the repository.
+
+Messing up with Git is easy but fixing it is easy as well. Just remember, don't `push`! What happens in the local repository, stays in the local repository. Check this [workflow from Git Pretty](http://justinhileman.info/article/git-pretty/) to help yourself to deal with Git calamities.
