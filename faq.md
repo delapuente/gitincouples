@@ -41,6 +41,12 @@ Or:
 $ git stash apply <stash>
 ```
 
+Or, in case you want to remove it from the list:
+
+```bash
+$ git stash pop
+```
+
 You can see stashes with:
 
 ```bash
@@ -65,7 +71,7 @@ $ git stash drop <stash>
 $ git stash clear
 ```
 
-Warning: this makes stashed changes impossible to recover.
+Warning: this makes stashed changes **impossible to recover**.
 
 ### I made changes in an incorrect branch and want them in a new branch
 
@@ -135,6 +141,13 @@ The same as moving a file but providing a new name in addition to the new
 location.
 
 ### I want to commit some files:
+
+```bash
+$ git add <one file> <another file> ...
+$ git commit -m"<commit message>"
+```
+
+### I want to commit all the files changed:
 
 ```bash
 $ git commit -am"<commit message>"
