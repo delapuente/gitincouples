@@ -7,20 +7,29 @@ as __Alice__, the owner of a repository and the other as __Bob__, a
 collaborator.
 
 Through the exercise, Alice and Bob will evolve a basic JavaScript version
-of the [Mars Rover Kata](http://craftsmanship.sv.cmu.edu/katas/mars-rover-kata)
+of the [Mars Rover Kata](http://kata-log.rocks/mars-rover-kata)
 to a more sophisticated implementation.
 
 Prerequisites
 -------------
 
-You must have [git](http://git-scm.com/downloads) installed on your system and
+You must have [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed on your system and
 it must be properly configured to be used from a command line or terminal.
 
 In addition, you should know a little bit about Git, here you have some interesting
 lectures:
  * [Git - The Simple Guide](http://rogerdudler.github.io/git-guide/)
- * [Git tutorial by Atlassian](https://www.atlassian.com/git/tutorial)
  * [Git workflows by Atlassian](https://www.atlassian.com/git/workflows)
+
+Visualzing Git
+--------------
+
+This guide is intended to make you use the Git command line interface (CLI) but you may prefer a more visual tool. Try these if that's your case:
+
+* [GitHub Desktop](https://desktop.github.com/)
+* Explore a [collection of graphic clients](https://git-scm.com/downloads/guis) compiled by the official Git site.
+
+In addition, [Visual Studio Code](https://code.visualstudio.com/docs/editor/versioncontrol) and [PyCharm](https://confluence.jetbrains.com/display/PYH/Using+PyCharm%27s+Git+integration+locally) come with a decent Git visualization tools.
 
 How to follow the exercise
 --------------------------
@@ -106,16 +115,21 @@ The workflow
 ------------
 
 The workflow proposed in Git in Couples is the
-[Forking Workflow](https://www.atlassian.com/git/workflows#!workflow-forking) and
-Alice's repository is the official one. Alice and Bob will integrate their changes
-by the use of [pull requests](https://help.github.com/articles/using-pull-requests).
+[Forking Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow). In Bitbucket words:
+
+> The Forking Workflow is most often seen in public open source projects.
+>
+> The main advantage of the Forking Workflow is that contributions can be integrated without the need for everybody to push to a single central repository. Developers push to their own server-side repositories, and only the project maintainer can push to the official repository. This allows the maintainer to accept commits from any developer without giving them write access to the official codebase.
+
+Alice's repository is the official codebase and Alice will act as the maintainer. Alice and Bob will integrate their changes
+by the use of [pull requests](https://help.github.com/articles/about-pull-requests/).
 
 The Mars Rover Kata
 -------------------
 
 FYI, here is the kata formulation:
 
- * Develop an api that moves a rover around on a grid.
+ * Develop an API that moves a rover around on a grid.
  * You are given the initial starting point (x,y) of a rover and the direction (N,S,E,W) it is facing.
  * The rover receives a character array of commands.
  * Implement commands that move the rover forward/backward (f,b).
