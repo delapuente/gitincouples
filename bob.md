@@ -5,10 +5,9 @@ You are Bob, a software developer and an open source contributor. You are eager
 to help others with their code and make interesting contributions to open source
 projects.
 
-_Wait Alice for requesting your collaboration..._
+_Wait here._
 
-1. Fork Alice's repository
---------------------------
+## 1. Fork Alice's repository
 
 Enter https://github.com/alice/marsroverkata, log in and click on the _Fork_ button
 near the top-right corner. 
@@ -20,8 +19,7 @@ project to be forked to. If not, the fork process starts immediately.
 
 Now you have a remote copy of Alice's repository!
 
-2. Clone the repository
------------------------
+## 2. Clone the repository
 
 Locate a place in your filesystem to put the remote code. It is not necessary to create
 the specific folder for the kata, just choose a place for your projects.
@@ -40,7 +38,7 @@ Enter the new folder named after the repository:
 $ cd marsroverkata
 ```
 
-As we cloned from a repository, an automatically added remote called `origin` is already
+As we cloned from a repository, an automatically remote called `origin` is already
 set. To see it:
 
 ```bash
@@ -49,12 +47,14 @@ $ git remote -v
 
 Remember the `-v` or git won't show the URLs.
 
+<!--
 To prevent git for asking our user again and again it is better to include the username
 in the remote URL. So set the remote url by typing:
 
 ```bash
 $ git remote set-url origin https://bob@github.com/bob/marsroverkata.git
 ```
+-->
 
 As you're contributing to another's project, let's add another remote for it.
 
@@ -62,36 +62,28 @@ As you're contributing to another's project, let's add another remote for it.
 $ git remote add upstream https://bob@github.com/alice/marsroverkata.git
 ```
 
+Remember: the `upstream` remote represents the official codebase you want to
+contribute with while `origin` is the codebase you cloned locally and should be
+your remote fork.
+
 **Note**: here you must replace `bob` by your username and `alice` by your mate's username.
 
-_Wait for Alice to update her repository..._
+_Wait here and ask Alice to continue at section 3._
 
-3. Update your local repository
--------------------------------
+## 3. Update your local repository
 
-Alice is requesting your help for improving her code. You first need to get that code. You
-set a remote for Alice's repository named `upstream`. Use it to pull the changes into your
-local repository.
+You think you could improvie Alice's codebase so you first need to get that code. You
+already set a remote for Alice's repository named `upstream`. Use it to pull the
+changes into your local repository.
 
 ```bash
 $ git pull upstream master
 ```
 
-You will see a brief of the changes and you can see the differences between your current
-updated version and the former one by showing asking for a _diff_ with `ORIG_HEAD`.
+Remember this command, you'll use it a lot of times. In Alice's guide there is a detailed explanation
+of what it's doing.
 
-```bash
-$ git diff --name-status ORIG_HEAD
-```
-
-The `A` in the report stands for **Added**. If you want see all the differences, type:
-
-```bash
-$ git diff ORIG_HEAD
-```
-
-4. Spliting source code
------------------------
+## 4. Spliting source code
 
 First thing you notice when looking at Alice code is that all the source code is in the same
 place so you decide to split the source into three files:
@@ -119,8 +111,7 @@ into your working tree and replace when asked.
 If splitting manually, don't forget to adjust the HTML by replacing the reference to `kata.js` script
 by the three new files. The `test.js` script **must be the last**.
 
-5. Commiting your changes
--------------------------
+## 5. Commiting your changes
 
 Now you've (almost) finished with the split, you want to ask Alice for reviewing your code and merge into
 master if she agrees with the the modifications. Take a break: step by step!
@@ -147,7 +138,7 @@ With that `*.js` pattern you're saying you want add all the files ending in `.js
 $ git status
 ```
 
-Now you see the new files are staged, under `Changes to be committed:` but the index remains unstaged.
+Now you see the new files are staged, under `Changes to be committed:` but `index.html` remains unstaged.
 
 Add it by typing:
 
@@ -178,10 +169,10 @@ Check the status now to discover a weird thing: git shows there has been a renam
 renamed:    kata.js -> rover.js
 ```
 
-Don't worry, this is becasue most of the code in `kata.js` has ended inside `rover.js` so git thinks
+Don't worry, this is becasue most of the code in `kata.js` has ended inside `rover.js` so Git thinks
 you're rewritting the file and renaming it.
 
-Now all your code is ready to be commited, do it:
+Now all your code is ready to be commited. Do it:
 
 ```bash
 $ git commit -m'Source is now split in three files'
@@ -193,42 +184,39 @@ Finally, publish the changes in your public repository:
 $ git push origin split-sources
 ```
 
-See? The first parameter after `push` is your repository and the second one is the branch name
-**for your remote repository**. You always pushes the branch where you currently are. Normally
-local and remote names coincide.
+See? The first parameter after `push` is your repository and the second one is the source branch you want to upload.
 
 See your branch online navigating to: https://github.com/bob/marsroverkata/tree/split-sources
 
-6. Asking for review
---------------------
+## 6. Asking for review
 
 In the online branch view, you'll see a green button just before the branch switcher. Click on it
-to start filinf a pull request.
+to start filing a pull request.
 
 Click on _Create pull request_ and use the next screen to add a description or review your changes
-if you want. Finally, send the PR by clicking on _Send pull request_. Once sent, you have the 
-opportunity of setting the asignee for this PR at the right of the code.
+if you want. Finally, send the PR by clicking on _Send pull request_.
 
-_Choose Alice and ask her for the review!_
+_Wait here and ask Alice to continue at section 4._
 
-7. Update your `master` branch
-------------------------------
+## 7. Update your `master` branch
 
-Now Alice has accepted your changes, go to your local repository ensure in which branch you're by
-showing local branches:
+Alice merged your code, yay! And now it seems she's requesting your help with a code review. First,
+check if you're on the `master` branch with:
 
 ```bash
 $ git branch
 ```
 
-The current branch is marked with an asterisc (`*`). Change to the `master` branch:
+This shows all the branches. The current one is marked with an asterisc (`*`). Change to the `master`
+branch if needed:
 
 ```bash
 $ git checkout master
 ```
 
 With `checkout` you can switch from branch to branch. Before, when creating the branch for splitting
-the source, you provided the `-b` option to say git you were switching to a **new branch**.
+the source, you provided the `-b` option to say git you were switching to a **new branch**. Now, you
+don't want to create a new branch, just moving to an existing one.
 
 When switching to `master` you will read:
 
@@ -236,24 +224,21 @@ When switching to `master` you will read:
 Your branch is ahead of 'origin/master' by 1 commit.
 ```
 
-This is because you are a contributo of the `upstream` repository and you are using your own remote
+This is because you are a contributor of the `upstream` repository and you are using your own remote
 repository to hold feature branches only. Nothing is keeping your master synchronized with the official
-repository. This taks depends on you.
+repository. This task depends on you.
 
-Let's synchronize but before, update your master with the latest changes. You should never start a feature
-without updating your master branch before.
+Let's synchronize but before, update your master with the latest changes. **You should never start a feature
+without updating your master branch before**.
 
 ```bash
 $ git pull upstream master
 ```
 
-I remind you can see a summary of differences with:
+You will learn more about `git pull` after exchanging the roles with Alice.
 
-```bash
-$ git diff --name-status ORIG_HEAD
-```
-
-Now push all the changes to your remote repository.
+OK. Local copy of the `master` branch updated! Now let's move these changes to
+your **remote** repository:
 
 ```bash
 $ git push origin master
@@ -261,50 +246,18 @@ $ git push origin master
 
 Notice you are working with `upstream` and `origin`.
 
-The first one is the _official_ repository where you're contirbuting. You never push to `upstream`,
+The first one is the _official_ repository where you're contributing. You never push to `upstream`,
 only use it to get the latest `master` updates.
 
-The second one is the _remote_ repository you own and use to develop new features. Push to origin
+The second one is the _remote_ repository you own and use to develop new features. Push to `origin`
 whenever you want.
 
-_Now wait Alice for asking you how to teach he about making a pull request. You will be her reviewer
-and Alice will teach you how to review the code and merge. Remember you are mergin to Alice's repository
-so you need to navigato to https://github.com/alice/marsroverkata/pulls in order to see the pending
-pull requests. Once merged, continue reading._
+## 8. Avoiding repetition when turning
 
-8. Update your `master` branch (again)
---------------------------------------
+You have a pending PR review from Alice. I know, but just hold a minute and complete this step
+before.
 
-And get used to it because this is the regular cycle:
- 
- 1. Pull from `upstream`
- 2. Brach for a new feature
- 3. Push ot `origin`
- 4. Continue developing until the feature is ready
- 5. Make a PR and ask for review
- 6. Address the issues if any; if not, go to 8
- 7. Update the PR and go to 5
- 8. Get your PR merged
- 9. Go to 1
-
-So, switch to the `master` branch:
-
-```bash
-$ git checkout master
-```
-
-And update:
-
-```bash
-$ git pull upstream master
-```
-
-9. Avoiding repetition when turning
------------------------------------
-
-_Please, ignore Alice until you complete this step._
-
-Now you realize that `rover.js` contains a lot of repetition and you want to propose some changes
+You have realized that `rover.js` contains a lot of repetition and you want to propose some changes
 to Alice. So you will make a new branch called `avoiding-repetition`. Come on! Go on...
 
 ```bash
@@ -338,51 +291,40 @@ So now stage and commit your changes:
 
 ```bash
 $ git add js/rover.js
-$ git commit -m'Avodiing some repetition'
+$ git commit -m'Avoiding some repetition'
 ```
 
-Mmmm, may your comment is too short. You could provide a better explanation about what are you doing.
-To fix a commit comment, type:
+You could have provided a better explanation about what are you doing. To fix a commit comment, type:
 
 ```bash
 $ git commit --amend -m'Avoiding some reptition by refactoring turnRight and turnLeft'
 ```
 
-The key is the `--amend` parameter. It allows you to change the commit message. Please, **never** amend
-an already published commit. **Published history is sacred!**
+The key is the `--amend` parameter. It allows you to change the commit message. Please, try to avoid
+amending already published commits.
 
 So, now, publish your code and prepare a PR.
 
-_Ask Alice to review your code and wait for Alice because Alice will be requesting your review as well.
-Indeed, if you have received her request, Attend it now! Please don't merge her code. You can suggest
-a good improvement._
-
-10. Commenting on a PR
-----------------------
+## 8.  Commenting on a PR
 
 While reviewing the code of Alice you notice two things:
 
  1. Both of you had the same idea and you're editing the same file. Don't panic and keep reviewing.
- 2. The Alice refactor is ok but she is accesing `this.position[0]` and `this.position[1]` repeatedly
+ 2. The Alice refactor is OK but she is accesing `this.position[0]` and `this.position[1]` repeatedly
 which can harm performance.
 
 So leave a comment in the code asking her for trying to minimize the access.
 
-_Wait for Alice modifications. Once you have it, merge her PR. Then Alice will start to review your
-code, wait for her to finish._
+_Wait here and ask Alice to continue at section 8._
 
-11. Update your `master` branch!
---------------------------------
+## 9.  Update your `master` branch!
 
-You have realized you don't need to change your branch a bit because git has guessed how to merge your
+You have realized you don't need to change your branch a bit because Git has guessed how to merge your
 changes. This does not always happend but it's good when it does!
 
 Please, update your `master` branch again. No clues this time.
 
-12. A little bit complex change
--------------------------------
-
-_Please, ignore Alice until you complete this step._
+## 10.  A little bit more complex change
 
 The refactor from Alice gave you an idea! And you know how to refactor the `move()` function. Create
 another feature branch called `move-refactor`.
@@ -413,21 +355,23 @@ Now open `rover.js` file and replace the move function by:
     r: 'turnRight',
     l: 'turnLeft'
   },
-
 ```
 
 Commit your changes and prepare a PR.
 
-_Ask Alice for reviewing and merging but attend Alice first. Make her code to be merged before yours and
-wait for Alice review._
+_Wait here and ask Alice to continue at section 9._
 
-13. Rebasing your changes
--------------------------
+## 11. Merge Alice's PR
+
+First, merge Alice's PR.
+
+## 12.  Rebasing your changes
 
 You have noticed Alice is changing the same file as you again and this time changes are not clearly
-located as they are spread along the file. So Alice has asked you to rebase your code.
+located as they are spread along the file. You would wanted to have started your changes after this
+modification. And that is precisely what you are going to do.
 
-To rebase your code is to put your commits on the top of `master`. So, first, update your `master` branch.
+_To rebase_ your code is to put your changes on the top of `master`. So, first, update your `master` branch.
 
 Now return to your feature branch and type:
 
@@ -435,7 +379,7 @@ Now return to your feature branch and type:
 $ git rebase master
 ```
 
-This tell git to try to apply your commits on the top of `master` one by one. But this time git does
+This tell Git to try to apply your changes on the top of `master` one by one. But this time Git does
 not know how to merge the code. So you should do manually. We call this to solve conflicts.
 Let's go, it is not (very) hard!
 
@@ -498,7 +442,7 @@ To the mark:
 =======
 ```
  
-Indicates what is in `HEAD` whilst from the same mark to:
+Indicates what is in `HEAD`. And from the same mark to:
 
 ```
 >>>>>>> Avoiding the switch of move() function
@@ -557,7 +501,7 @@ $ git push origin move-refactor
 
 And it will fail saying your local repository is behind the remote one. Ok, this is not true. What really
 happen is that the story in the local and remote repository have diverged and, in your local repository,
-there are more commits (those from Alice's changes) git did not expect. So this is the only occasion you
+there are more commits (those from Alice's changes) than Git expected. So this is the only occasion you
 will be rewriting a remote repository:
 
 ```bash
@@ -567,9 +511,9 @@ $ git push -f origin move-refactor
 The `-f` option means `force` and it is a very dangerous option when working with collaborators. As you
 are the only contributor to this branch, there is no danger but, please, be careful.
 
-_Ask Alice for review._
+_Wait here and ask Alice to continue at section 11._
 
-14. Some clean up
+1.  Some clean up
 -----------------
 
 Wow Bob, a lot of things has happened today. Let's do some clean up before finish.

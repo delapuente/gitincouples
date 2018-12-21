@@ -5,10 +5,9 @@ You are Alice, a software developer, and you wrote a version of the Mars Rover
 Kata. Now you want to publish your software and you have choosen Git and GitHub
 for that end.
 
-1. Create your GitHub repository
---------------------------------
+## 1. Create your GitHub repository
 
-Enter https://github.com, log in and click on the plus mark on the top-right
+Enter https://github.com, log in-and click on the plus mark on the top-right
 corner to create a `New repository`.
 
 In the next screen provide a name for the repository such as `marsroverkata`
@@ -20,8 +19,7 @@ You will be provided with the instructions for setting your repository. Keep thi
 screen in the browser and move to a terminal. You will return in a couple of
 minutes.
 
-2. Initialize your Git repository
----------------------------------
+## 2. Initialize your Git repository
 
 Create a folder on your system and open a terminal inside this location. Name
 the folder as your repository (not mandatory but convenient), i.e. `marsroverkata`.
@@ -48,7 +46,6 @@ $ git remote add origin https://alice@github.com/alice/marsroverkata.git
 
 **Note**: replace `alice` with your GitHub's username.
 
-
 Mark the readme to be tracked:
 
 ```bash
@@ -67,12 +64,11 @@ Push your changes to the server
 $ git push origin master
 ```
 
-_Ask Bob for collaboration..._
+_Wait here and ask Bob to start at section 1._
 
-3. Publish your initial code
-----------------------------
+## 3. Publish your initial code
 
-[Download your initial code](https://github.com/lodr/gitincouples/raw/master/kata/initialkata.zip)
+[Download your initial code](https://github.com/delapuente/gitincouples/raw/master/kata/initialkata.zip)
 in a zip and decompress the contents into your working tree. Now check the git status by typing:
 
 ```bash
@@ -81,14 +77,14 @@ $ git status
 
 You will see the new added files under `Untracked files:`
 
-You can each one individually or all using a pattern. This is the most general pattern and will add
+You can add each one individually or all using a pattern. This is the most general pattern and will add
 all the files not yet tracked.
 
 ```bash
 $ git add .
 ```
 
-Check what is the state of your files now your have added them:
+Check what is the state of your files now your have added all of them:
 
 ```bash
 $ git status
@@ -114,57 +110,82 @@ Finally, push your changes to the remote repository.
 $ git push origin master
 ```
 
-_Ask Bob for the first improvement..._
+Along this course, Bob's guide will talk about two remote repositories: `upstream` and `origin` but
+your guide will only talk about `origin`. This is because you are the author of the project and
+your `origin` is actually Bob's `upstream`.
+
+_Wait here and ask Bob to continue at section 3._
 
 
-4. Review the code
-------------------
+## 4. Review the code
 
-So Bob is asking you for reviewing a pull request. A pull request is a mechanism offered by GitHub
-that allows a developer to review code from collaborators online, make comments and finally merge
-into the target branch without using git. So navigate to:
+So you've found a new PR from your first collaborator. A pull request is a common
+mechanism that allows a developer to review code from collaborators online, make
+comments and finally merge into the target branch without using Git. So navigate to:
 https://github.com/alice/marsroverkata/pulls to see the list of open PR. Click on the first (and solely)
 one and start reviewing the code!
 
-See some tips at https://help.github.com/articles/using-pull-requests#reviewing-the-pull-request
+See some tips at
+https://github.com/features/code-review
 
-Trust me now when I say you there is nothing bad with this code if Bob followed the exercise ;)
+There is nothing bad with this code if Bob followed the exercise so just click on _Merge pull request_.
+You will be given the chance of adding a comment and cancel the operation but now, simply click on _Confirm merge_ to finish.
 
-So just click on _Merge pull request_. You will be given the chance of adding a comment and cancel the
-operation but now, simply click on _Confirm merge_ to finish.
+Now the changes are in the **remote** `master` branch.
 
-Now the changes are in the `master` branch.
+## 5. Update your local repository
 
-_Tell Bob you merged his changes and continue reading!_
+The changes are now integrated in the official codebase but your local repository is
+out of sync. You need to fix that. This could be done in just one step but, under the hoods, Git
+is performing two. Let's see them separately to understand what's happening.
 
+Ensure you're in the `master` branch by doing `git status`. If not the case, change the branch to
+`master`.
 
-5. Update your local repository
--------------------------------
-
-In your local repository, ensure you're in the `master` branch with `git status`. Then update the
-local repository with:
-
-```bash
-$ git pull origin master
-```
-
-You can see a summary of the changes with:
+Now you need to get a local copy of the changes in the remote repository. Do this by issuing the
+following command:
 
 ```bash
-$ git diff --name-status ORIG_HEAD
+$ git fetch origin master
 ```
 
-You will see files added (`A`), deleted (`D`) and modified (`M`).
+This will put the remote changes in a special branch called `origin/master` but not yet in
+your local `master`.
 
-Time for another modification.
+You can inspect the changes doing:
 
-6. Move to directories
-----------------------
+```bash
+$ git diff HEAD origin/master
+```
+
+This commands means "show me what I should do to my current branch (`HEAD`) to transform it into
+`origin/master`" and you could not be doing it if you've opted for the single-step version of this
+procedure. The `-` prefixed lines mean "remove" while the `+` prefixed lines mean "add".
+
+You can do also:
+
+```bash
+$ git diff origin/master
+```
+
+Although that means "show me what I should do to `origin/master` to transform it into my current
+branch". I.e. you can interpret the `-` prefixed lines as "what is missing in your current branch"
+and `+` prefixed lines as "what you have instead".
+
+The second and last step is to merge those changes into your local `master`. Do it by typing:
+
+```bash
+$ git merge origin/master
+```
+
+Now your local repository is up-to-date again! It's time for another modification.
+
+## 6. Move to directories
 
 Despite you closed the PR, you realize it could be a better organization to move the source code
 to another place, say a `js` folder. Create it now. Notice that moving and object is like deleting
 from its current location and adding a new one in the new path. To avoid these deletions / additions,
-git has its own move command:
+Git has its own "move" command:
 
 ```bash
 $ git mv *.js js/
@@ -177,14 +198,14 @@ tree with:
 $ git status
 ```
 
-Pay attention to the current branc: it's `master`!! You should never modify master directly!
+Pay attention to the current branch: it's `master`!! You should never modify master directly!
 
-Instead, use a branch, ask for review and merge if all looks well.
+Instead, use a branch, ask for review and merge if everything looks well.
 
-But worry not, your `master` branch is tracked by git so it is very hard to loose something. Just pay
+But worry not, your `master` branch is tracked by Git so it is very hard to lose something. Just pay
 attention to the git status messages and you'll realize you can undo all your changes.
 
-Moreover, you can simply pick and move your changes to a new branch by typing:
+Don't do it though. Usually, you can simply pick and move your changes to a new branch by typing:
 
 ```bash
 $ git checkout -b moving-sources
@@ -201,8 +222,9 @@ $ git branch -a
 
 Without `-a` it only shows the local branches.
 
-Now your changes are in the new branch. Well, all is ok. If you use `git status` you will see three
-renames, git treats a movement as a rename. There is nothing special here, it is the Linux way!
+Now your changes are in the new branch. Well, everything is OK again. If you use `git status` you
+will see three renames, Git treats a movement as a rename. There is nothing special here, it is the
+Linux way!
 
 Before finishing, use a source editor to fix the paths for your JS scripts in the `index.html` file.
 The final content of the file should be:
@@ -231,46 +253,57 @@ $ git add index.html
 Finally, commit the changes:
 
 ```bash
-$ git commit -m'Sources moved to a better emplacement'
+$ git commit -m'Sources moved to a better location'
 ```
 
-And publish the code into a new branch:
+Well, what follows is considered a **bad practice**: we are going to push to master, directly. Let
+me tell you something: having an active open source community is not the common scenario. Usually,
+your projects will be very local and you and very few people (usually, only you) will be the
+solely maintainers of the project. Let's be pragmatic: you're not changing code, just doing
+some house-keeping regarding the structure of your project and manual testing seems to be working
+so we are bypassing the PR cycle in this case.
 
-```bash
-$ git push origin moving-sources
-```
-
-Now you need to make a PR to yourself. It can sound strange but it is quite convenient that
-another programmer rather than you review your code before merging. You can make a PR from
-one of your branches (`moving-sources`) to another (`master`) but you can not assign this 
-PR to Bob unless he is an official repository collaborator so grant permissions to him by
-[adding a collaborator](https://help.github.com/articles/how-do-i-add-a-collaborator).
-
-_Now ask Bob for teach you about making a pull request and then you will teach him about the review
-process. Once merged, continue reading._
-
-7. Avoiding repetition when moving
-----------------------------------
-
-_Please, ignore Bob for reviewing code until you end this part._
-
-Admit, you never liked how your `moveForward()` and `moveBackward()` functions look. Let's do some refactor.
-
-Start by updating you master branch. Then swictch to a new one.
+First make sure there is nothing to commit with `git status`. Now change to master:
 
 ```bash
 $ git checkout master
-$ git pull origin master
+```
+
+Ensure you have the latest changes by repeating the two steps you learned in the previous section
+or using the one-step version showed here:
+
+```bash
+$ git pull upstream master
+```
+
+Now merge your working branch locally:
+
+```bash
+$ git merge moving-sources
+```
+
+Accepts the commit message and push to the remote `master` branch:
+
+```bash
+$ git push origin master
+```
+
+## 7. Avoiding repetition when moving 
+
+Admit it, you never liked how your `moveForward` and `moveBackward` functions looked. Let's do
+some refactor.
+
+```bash
 $ git checkout -b avoiding-repetition
 ```
 
-Maybe your branch name is not very accurate. Let's rename the branch to somethig more specific:
+This branch name is not very accurate. Rename the branch to somethig more specific:
 
 ```bash
 $ git branch -m refactoring-moving-forward-and-backward
 ```
 
-You can consider `-m` as _moving_. 
+The `-m` option stands for _moving_. 
 
 Open `rover.js` and replace `moveForward` and `moveBackward` by the following code:
 
@@ -310,19 +343,18 @@ Open `rover.js` and replace `moveForward` and `moveBackward` by the following co
   },
 ```
 
-Now, prepare a PR. Remember yoou must stage, commit and publish your changes before asking for
+Now, prepare a PR. Remember you must stage, commit and push your changes before asking for
 review!
 
 ```bash
 $ git add js/rover.js
-$ git commit -m'Refactoring moveForward and mmoveBackward'
+$ git commit -m'Refactoring moveForward and moveBackward'
 $ git push origin refactoring-moving-forward-and-backward
 ```
 
-_Ask for Bob review. He has some comments for you._
+Create a PR, _wait here and ask Bob for continuing at section 7_.
 
-8. Pushing changes to already published branches
-------------------------------------------------
+## 8. Pushing changes to already published branches
 
 Publish new changes to an already published branch is not a mistery. Review the comments in the PR to
 see how Bob has detected a lot of accesses to `this.position[x]`. Let's reduce theses accesses. Ensure
@@ -354,30 +386,28 @@ Now open `rover.js` and replace the `advance` member by:
   },
 ```
 
-And finally publish your changes again. The PR will be automatically because it is linked to your branch.
+And finally push your changes again. The PR will be automatically updated because it is linked to
+your branch.
 
-_Tell Bob you made his modifications and start reviewing his PR but please, don't merge it yet. Wait for
-yours to be merged **first**._
+_Wait here and ask Bob to continue at section 9._
 
-9. Review Bob changes
----------------------
+## 9. Review Bob changes
 
 Review Bob changes. You will notice he was modifying the same file as you. Try to refresh by pressing F5
 and you will notice GitHub keeps saying that the PR can be automatically merged. This is because the merge
-algorithms of git are smart enough to realize you both have changed different parts of the file and know
+algorithms of Git are smart enough to realize you both have changed different parts of the file and know
 how to merge them.
 
-Good news but before merging why not try Bob's code. It is not mandatory, but until now you were relying
-on Bob's word when saying the tests are passing. You are two and probably you're friends but Bob could be
-a complete unknown.
-
-Let's check if tests are actually passing.
+All set but, before merging, why not trying Bob's code. It is not mandatory, but until now you were relying
+on Bob's word when saying the tests are passing. Let's check if tests are actually passing.
 
 First you need to add a remote to refer to Bob's remote repository:
 
 ```bash
 $ git remote add bob https://alice@github.com/bob/marsroverkata.git
 ```
+
+**Note**: remember to change 'bob' with your mate username.
 
 Now you need to fetch the branches in Bob:
 
@@ -393,7 +423,7 @@ $ git branch --track avoiding-repetition bob/avoiding-repetition
 
 It is very important to notice the first name is the name you give to **your** local branch to test Bob's
 branch. It could be named with any other name such as `testing-bob` but we choosed to keep the same name.
-The second parameter with the `--track` options tells git that the new branch is following Bob's branch so
+The second parameter with the `--track` options tells Git that the new branch is following Bob's branch so
 you can say if you're out of date with respect to the remote repository and make `git pull` to update.
 
 Now change to that branch and test the code by opening `index.html` and a JS console and checking the three
@@ -405,10 +435,7 @@ $ git checkout avoiding-repetition
 
 Once checked, accept the PR and update your `master` branch!
 
-10. A little bit more complicated refactor
-------------------------------------------
-
-_Please, ignore Bob until you complete this step._
+## 10. A little bit more complicated refactor
 
 Looking at the tests, you noticed your current implementation only allows one rover and one grid so you
 could refactor the modules into classes to generate instances of rovers and grids. Create a new feature
@@ -423,19 +450,15 @@ and decompress into your working tree overwriting the `js` folder.
 
 Don't forget to commit your changes and prepare a PR.
 
-_Ask Bob to review and merge your code. If Bob ask you for reviewing another PR, do it but get your code
-merged first._
+## 11.  Review Bob's code
 
-11. Review Bob's code
----------------------
-
-Bobs code is ok. Trust me. If you do'nt believe me, return to step 9 and try his code. The proble is
-you touch the same file and introduced some radical changes so git does not know how to automatically
+Bobs code is OK. Trust me. If you do'nt believe me, return to step 9 and try his code. The problem is
+you touched the same file and introduced some radical changes so Git does not know how to automatically
 merge the code.
 
-_Alice, ask Bob for rebasing his code, please. Wait for him and once rebased, merge the code._
+_While reviewing the code, ask Bob for "rebasing his code" and continue at section 11._
 
-12. Some history
+1.  Some history
 ----------------
 
 Lot of things has happend since you published your code. Did you remember. No? Type:
